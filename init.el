@@ -29,6 +29,26 @@
  ;; If there is more than one, they won't work right.
  )
 
+;; reduce the frequency of garbage collection by making it happen on
+;; each 50MB of allocated data (the default is on every 0.76MB)
+(setq gc-cons-threshold 50000000)
+
+;; Emacs modes typically provide a standard means to change the
+;; indentation width -- eg. c-basic-offset: use that to adjust your
+;; personal indentation width, while maintaining the style (and
+;; meaning) of any files you load.
+(setq-default indent-tabs-mode nil)   ;; don't use tabs to indent
+(setq-default tab-width 2)            ;; but maintain correct appearance
+
+;; mode line settings
+(line-number-mode t)
+(column-number-mode t)
+(size-indication-mode t)
+
+;; toolbar not needed
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode -1))
+
 ;; relative line numbers
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode 1)
