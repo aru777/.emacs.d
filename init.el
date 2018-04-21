@@ -1,3 +1,8 @@
+;; network proxy if any
+(setq proxy-file (expand-file-name "proxy.el" user-emacs-directory))
+(when (file-exists-p proxy-file)
+  (load proxy-file))
+
 (require 'package)
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -16,7 +21,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (projectile company super-save counsel swiper ivy use-package))))
+    (elisp-format projectile company super-save counsel swiper ivy use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

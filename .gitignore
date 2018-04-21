@@ -2,3 +2,6 @@ auto-save-list
 init.el~
 .gitignore~
 elpa
+proxy.el
+projectile*
+recentf
