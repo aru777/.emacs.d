@@ -21,7 +21,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (elisp-format projectile company super-save counsel swiper ivy use-package))))
+    (thrift elisp-format projectile company super-save counsel swiper ivy use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -131,3 +131,6 @@
   :config
   (setq projectile-completion-system 'ivy)
   (projectile-global-mode +1))
+
+(use-package thrift
+  :ensure t)
