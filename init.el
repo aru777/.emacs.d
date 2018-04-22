@@ -28,7 +28,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (company-irony spaceline spacemacs-theme thrift elisp-format projectile company super-save counsel swiper ivy use-package))))
+    (which-key company-irony spaceline spacemacs-theme thrift elisp-format projectile company super-save counsel swiper ivy use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -186,3 +186,18 @@
 
 (use-package thrift
   :ensure t)
+
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
+
+(use-package spaceline
+  :ensure t
+  :config
+  (require 'spaceline-config)
+    (setq spaceline-buffer-encoding-abbrev-p nil)
+    (setq spaceline-line-column-p nil)
+    (setq spaceline-line-p nil)
+    (setq powerline-default-separator nil)
+    (spaceline-spacemacs-theme))
