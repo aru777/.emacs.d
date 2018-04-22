@@ -40,6 +40,9 @@
 ;; each 50MB of allocated data (the default is on every 0.76MB)
 (setq gc-cons-threshold 50000000)
 
+;; no start up screen
+(setq inhibit-startup-message t)
+
 ;; Emacs modes typically provide a standard means to change the
 ;; indentation width -- eg. c-basic-offset: use that to adjust your
 ;; personal indentation width, while maintaining the style (and
@@ -52,9 +55,13 @@
 (column-number-mode t)
 (size-indication-mode t)
 
-;; toolbar not needed
-(when (fboundp 'tool-bar-mode)
-  (tool-bar-mode -1))
+;; stop making sounds
+(setq ring-bell-function 'ignore)
+
+;; none of the bars needed
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
 
 ;; relative line numbers
 (setq display-line-numbers-type 'relative)
@@ -73,6 +80,27 @@
   (balance-windows))
 (defadvice delete-window (after restore-balance activate)
   (balance-windows))
+
+;; automatically insert closing brackets
+(setq electric-pair-pairs '(
+                           (?\{ . ?\})
+                           (?\( . ?\))
+                           (?\[ . ?\])
+                           (?\" . ?\")
+                           ))
+(electric-pair-mode t)
+
+;; config visit and reload
+(defun config-visit ()
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+(global-set-key (kbd "C-c e") 'config-visit)
+
+(defun config-reload ()
+  "Reloads ~/.emacs.d/init.el at runtime"
+  (interactive)
+  (load-file (expand-file-name "~/.emacs.d/init.el")))
+(global-set-key (kbd "C-c r") 'config-reload)
 
 ;; package related stuff
 (unless (package-installed-p 'use-package)
