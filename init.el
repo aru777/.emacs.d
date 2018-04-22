@@ -38,44 +38,6 @@
  ;; If there is more than one, they won't work right.
  )
 
-;; reduce the frequency of garbage collection by making it happen on
-;; each 50MB of allocated data (the default is on every 0.76MB)
-(setq gc-cons-threshold 50000000)
-
-;; no start up screen
-(setq inhibit-startup-message t)
-
-;; Emacs modes typically provide a standard means to change the
-;; indentation width -- eg. c-basic-offset: use that to adjust your
-;; personal indentation width, while maintaining the style (and
-;; meaning) of any files you load.
-(setq-default indent-tabs-mode nil)   ;; don't use tabs to indent
-(setq-default tab-width 2)            ;; but maintain correct appearance
-
-;; mode line settings
-(line-number-mode t)
-(column-number-mode t)
-(size-indication-mode t)
-
-;; stop making sounds
-(setq ring-bell-function 'ignore)
-
-;; none of the bars needed
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(if window-system
-  (scroll-bar-mode -1))
-
-;; relative line numbers
-(setq display-line-numbers-type 'relative)
-(global-display-line-numbers-mode 1)
-
-;; highlight current line
-(global-hl-line-mode +1)
-
-;; disable emacs autosave mode because of super-save
-(setq auto-save-default nil)
-
 ;; keep windows balanced all the time
 (defadvice split-window-below (after restore-balanace-below activate)
   (balance-windows))
@@ -83,15 +45,6 @@
   (balance-windows))
 (defadvice delete-window (after restore-balance activate)
   (balance-windows))
-
-;; automatically insert closing brackets
-(setq electric-pair-pairs '(
-                           (?\{ . ?\})
-                           (?\( . ?\))
-                           (?\[ . ?\])
-                           (?\" . ?\")
-                           ))
-(electric-pair-mode t)
 
 ;; config visit and reload
 (defun config-visit ()
