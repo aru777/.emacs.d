@@ -1,3 +1,24 @@
+* Appearance
+** Theme
+#+BEGIN_SRC emacs-lisp
+  (use-package solarized-theme
+    :ensure t
+    :config
+    (load-theme 'solarized-light t))
+#+END_SRC
+** Status line
+#+BEGIN_SRC emacs-lisp
+  (use-package spaceline
+    :ensure t
+    :config
+    (require 'spaceline-config)
+      (setq spaceline-buffer-encoding-abbrev-p nil)
+      (setq spaceline-line-column-p nil)
+      (setq spaceline-line-p nil)
+      (setq powerline-default-separator nil)
+      (spaceline-spacemacs-theme))
+#+END_SRC
+
 * Yasnippet
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet

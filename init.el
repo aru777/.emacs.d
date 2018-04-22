@@ -119,11 +119,6 @@
   :config
   (evil-mode 1))
 
-(use-package solarized-theme
-  :ensure t
-  :config
-  (load-theme 'solarized-light t))
-
 (use-package ivy
   :ensure t
   :config
@@ -194,16 +189,6 @@
   :ensure t
   :config
   (which-key-mode))
-
-(use-package spaceline
-  :ensure t
-  :config
-  (require 'spaceline-config)
-    (setq spaceline-buffer-encoding-abbrev-p nil)
-    (setq spaceline-line-column-p nil)
-    (setq spaceline-line-p nil)
-    (setq powerline-default-separator nil)
-    (spaceline-spacemacs-theme))
 
 (setq org-config (expand-file-name "config.org" user-emacs-directory))
 (when (file-exists-p org-config)
