@@ -61,7 +61,8 @@
 ;; none of the bars needed
 (tool-bar-mode -1)
 (menu-bar-mode -1)
-(scroll-bar-mode -1)
+(if window-system
+  (scroll-bar-mode -1))
 
 ;; relative line numbers
 (setq display-line-numbers-type 'relative)
@@ -175,7 +176,7 @@
   (add-hook 'before-save-hook #'whitespace-cleanup)
   :config
   (setq whitespace-line-column 80) ;; limit line length
-  (setq whitespace-style '(face tabs empty trailing lines-tail)))
+  (setq whitespace-style '(face tabs empty trailing)))
 
 (use-package projectile
   :ensure t
