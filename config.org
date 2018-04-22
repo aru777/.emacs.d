@@ -1,4 +1,5 @@
 * Basic quality of life settings
+** Settings (mostly) from emacs
 #+BEGIN_SRC emacs-lisp
     ;; Highlight matching brackets
     (show-paren-mode 1)
@@ -49,6 +50,28 @@
                                (?\" . ?\")
                                ))
     (electric-pair-mode t)
+#+END_SRC
+** Keep windows balanced automatically
+#+BEGIN_SRC emacs-lisp
+  (defadvice split-window-below (after restore-balanace-below activate)
+    (balance-windows))
+  (defadvice split-window-right (after restore-balance-right activate)
+    (balance-windows))
+  (defadvice delete-window (after restore-balance activate)
+    (balance-windows))
+#+END_SRC
+** Quickly change config
+#+BEGIN_SRC emacs-lisp
+  (defun config-visit ()
+    (interactive)
+    (find-file "~/.emacs.d/init.el"))
+  (global-set-key (kbd "C-c e") 'config-visit)
+
+  (defun config-reload ()
+    "Reloads ~/.emacs.d/init.el at runtime"
+    (interactive)
+    (load-file (expand-file-name "~/.emacs.d/init.el")))
+  (global-set-key (kbd "C-c r") 'config-reload)
 #+END_SRC
 * Appearance
 ** Theme
@@ -102,4 +125,16 @@
 ** Keybindings
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-c '") 'org-edit-src-code)
+#+END_SRC
+* Evil
+#+BEGIN_SRC emacs-lisp
+  (use-package evil
+    :ensure t
+    :init
+    ;; This messes with org mode <TAB>
+    ;; Can live without this, but not without <TAB> in org
+    (setq evil-want-C-i-jump nil)
+    (setq evil-want-C-u-scroll t)
+    :config
+    (evil-mode 1))
 #+END_SRC

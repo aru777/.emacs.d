@@ -3,8 +3,8 @@
 (when (file-exists-p proxy-file)
   (load proxy-file))
 
+;; package related stuff
 (require 'package)
-
 (setq package-archives
       '(("GNU ELPA"     . "http://elpa.gnu.org/packages/")
         ("MELPA Stable" . "https://stable.melpa.org/packages/")
@@ -15,13 +15,16 @@
         ("ORG"          . 7)
         ("GNU ELPA"     . 5)
         ("MELPA"        . 0)))
-
 ;; keep the installed packages in .emacs.d
 (setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
 (package-initialize)
 ;; update the package metadata is the local cache is missing
 (unless package-archive-contents
   (package-refresh-contents))
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+(require 'use-package)
+(setq use-package-verbose t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -37,40 +40,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-;; keep windows balanced all the time
-(defadvice split-window-below (after restore-balanace-below activate)
-  (balance-windows))
-(defadvice split-window-right (after restore-balance-right activate)
-  (balance-windows))
-(defadvice delete-window (after restore-balance activate)
-  (balance-windows))
-
-;; config visit and reload
-(defun config-visit ()
-  (interactive)
-  (find-file "~/.emacs.d/init.el"))
-(global-set-key (kbd "C-c e") 'config-visit)
-
-(defun config-reload ()
-  "Reloads ~/.emacs.d/init.el at runtime"
-  (interactive)
-  (load-file (expand-file-name "~/.emacs.d/init.el")))
-(global-set-key (kbd "C-c r") 'config-reload)
-
-;; package related stuff
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-
-(require 'use-package)
-(setq use-package-verbose t)
-
-(use-package evil
-  :ensure t
-  :init
-  (setq evil-want-C-u-scroll t)
-  :config
-  (evil-mode 1))
 
 (use-package ivy
   :ensure t
