@@ -30,6 +30,12 @@
 (when (file-exists-p org-config)
   (org-babel-load-file org-config))
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 180 :width normal :foundry "nil" :family "Inconsolata for Powerline")))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -37,10 +43,4 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ace-window switch-window org-bullets yasnippet-snippets yasnippet org-tempo which-key company-irony spaceline spacemacs-theme thrift elisp-format projectile company super-save counsel swiper ivy use-package))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 180 :width normal :foundry "nil" :family "Inconsolata for Powerline")))))
+    (projectile company-irony counsel swiper ivy company evil org-bullets yasnippet-snippets yasnippet spaceline solarized-theme ace-window thrift super-save which-key use-package))))
