@@ -56,6 +56,9 @@
   ;; window configuration. Not anymore.
   (when (fboundp 'winner-mode)
     (winner-mode 1))
+
+  ;; line wrapping around word boundaries
+  (global-visual-line-mode 1)
 #+END_SRC
 ** Keep windows balanced automatically
 #+BEGIN_SRC emacs-lisp
@@ -160,7 +163,6 @@ Log key frequency of commands to better assign shortcuts.
     :config
     (require 'spaceline-config)
       (setq spaceline-buffer-encoding-abbrev-p nil)
-      (setq spaceline-line-column-p nil)
       (setq spaceline-line-p nil)
       (setq powerline-default-separator nil)
       (spaceline-spacemacs-theme))
