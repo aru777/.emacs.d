@@ -50,6 +50,12 @@
                              (?\" . ?\")
                              ))
   (electric-pair-mode t)
+
+  ;; Remember window modifications for undo-ing and redo-ing
+  ;; For eg, pressing C-x 1 would effectively mean destroying
+  ;; window configuration. Not anymore.
+  (when (fboundp 'winner-mode)
+    (winner-mode 1))
 #+END_SRC
 ** Keep windows balanced automatically
 #+BEGIN_SRC emacs-lisp
@@ -127,6 +133,7 @@ There is windmove, but getting it working with vim-like keybindings is painful.
     :pin MELPA
     :config
     (global-set-key (kbd "M-o") 'ace-window)
+    (global-set-key (kbd "C-x o") 'ace-window)
     (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
 #+END_SRC
 * Appearance
@@ -232,12 +239,14 @@ There is windmove, but getting it working with vim-like keybindings is painful.
 ** Autocompletion with irony
 #+BEGIN_SRC emacs-lisp
   (use-package company-irony
+    :pin MELPA
     :requires company
     :ensure t
     :config
     (add-to-list 'company-backends 'company-irony))
 
   (use-package irony
+    :pin MELPA
     :ensure t
     :config
     (add-hook 'c++-mode-hook 'irony-mode)
@@ -252,4 +261,11 @@ There is windmove, but getting it working with vim-like keybindings is painful.
     :config
     (setq projectile-completion-system 'ivy)
     (projectile-global-mode +1))
+#+END_SRC
+* Local elisp files
+** Rtags
+#+BEGIN_SRC emacs-lisp
+  (setq rtags-file (expand-file-name "rtags.el" user-emacs-directory))
+  (when (file-exists-p rtags-file)
+    (load rtags-file))
 #+END_SRC
