@@ -136,6 +136,15 @@ There is windmove, but getting it working with vim-like keybindings is painful.
     (global-set-key (kbd "C-x o") 'ace-window)
     (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
 #+END_SRC
+** Key frequency logging
+Log key frequency of commands to better assign shortcuts.
+#+BEGIN_SRC emacs-lisp
+  (use-package keyfreq
+    :ensure t
+    :config
+    (keyfreq-mode 1)
+    (keyfreq-autosave-mode 1))
+#+END_SRC
 * Appearance
 ** Theme
 #+BEGIN_SRC emacs-lisp
