@@ -116,6 +116,14 @@ Saves automatically when window loses focus
                (ibuffer-auto-mode 1)
                (ibuffer-switch-to-saved-filter-groups "home")))
 #+END_SRC
+** Moving between windows
+There is windmove, but getting it working with vim-like keybindings is painful.
+=ace-window= should do the trick for now.
+#+BEGIN_SRC emacs-lisp
+  ;; TODO more configuration here
+  (use-package ace-window
+    :ensure t)
+#+END_SRC
 * Appearance
 ** Theme
 #+BEGIN_SRC emacs-lisp
