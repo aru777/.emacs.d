@@ -166,6 +166,14 @@ Log key frequency of commands to better assign shortcuts.
       (spaceline-spacemacs-theme))
 #+END_SRC
 
+** Rainbow delimiters
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-delimiters
+    :ensure t
+    :pin MELPA
+    :config
+    (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+#+END_SRC
 * Yasnippet
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet
