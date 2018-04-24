@@ -220,6 +220,12 @@ Log key frequency of commands to better assign shortcuts.
     (setq evil-want-C-u-scroll t)
     :config
     (evil-mode 1))
+
+  (use-package evil-surround
+    :pin MELPA
+    :ensure t
+    :config
+    (global-evil-surround-mode 1))
 #+END_SRC
 * Company for autocompletion
 #+BEGIN_SRC emacs-lisp
