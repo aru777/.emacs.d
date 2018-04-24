@@ -235,6 +235,7 @@ Log key frequency of commands to better assign shortcuts.
 * Ivy + swiper + counsel
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
+    :pin MELPA
     :ensure t
     :config
     (ivy-mode 1)
@@ -243,12 +244,14 @@ Log key frequency of commands to better assign shortcuts.
     (global-set-key (kbd "C-c C-r") 'ivy-resume))
 
   (use-package swiper
+    :pin MELPA
     :ensure t
     :config
     (global-set-key "\C-s" 'swiper))
 
   ;; TODO: read other features of counsel
   (use-package counsel
+    :pin MELPA
     :ensure t
     :config
     (global-set-key (kbd "C-x C-f") 'counsel-find-file)
@@ -270,7 +273,12 @@ Log key frequency of commands to better assign shortcuts.
     :config
     (add-hook 'c++-mode-hook 'irony-mode)
     (add-hook 'c-mode-hook 'irony-mode)
-    (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+    ;; irony reads compilation json for each file even though the same
+    ;; json has the compile commands for all files.
+    ;; When the number of files on the compilation database is huge, it
+    ;; takes minutes to open a file. Not good.
+    ;; (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+    )
 #+END_SRC
 * Projectile
 #+BEGIN_SRC emacs-lisp
