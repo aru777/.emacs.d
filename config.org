@@ -162,10 +162,12 @@ Log key frequency of commands to better assign shortcuts.
     :ensure t
     :config
     (require 'spaceline-config)
-      (setq spaceline-buffer-encoding-abbrev-p nil)
-      (setq spaceline-line-p nil)
-      (setq powerline-default-separator nil)
-      (spaceline-spacemacs-theme))
+    (setq spaceline-buffer-size-p nil)
+    (setq spaceline-buffer-encoding-abbrev-p nil)
+    (setq spaceline-line-p nil)
+    (setq powerline-default-separator nil)
+    (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+    (spaceline-spacemacs-theme))
 #+END_SRC
 
 ** Rainbow delimiters
