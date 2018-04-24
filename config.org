@@ -259,8 +259,10 @@ Log key frequency of commands to better assign shortcuts.
 #+END_SRC
 * C++ settings
 ** Autocompletion with irony
+Irony is super slow for compilation databases with huge number of files because it reads the whole json and tries to find the relevant one
 #+BEGIN_SRC emacs-lisp
   (use-package company-irony
+    :disabled
     :pin MELPA
     :requires company
     :ensure t
@@ -268,16 +270,13 @@ Log key frequency of commands to better assign shortcuts.
     (add-to-list 'company-backends 'company-irony))
 
   (use-package irony
+    :disabled
     :pin MELPA
     :ensure t
     :config
     (add-hook 'c++-mode-hook 'irony-mode)
     (add-hook 'c-mode-hook 'irony-mode)
-    ;; irony reads compilation json for each file even though the same
-    ;; json has the compile commands for all files.
-    ;; When the number of files on the compilation database is huge, it
-    ;; takes minutes to open a file. Not good.
-    ;; (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+    (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
     )
 #+END_SRC
 * Projectile
