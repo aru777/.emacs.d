@@ -333,5 +333,5 @@ Irony is super slow for compilation databases with huge number of files because 
     (load rtags-file))
 #+END_SRC
 * Yet to figure out
-** TODO Reliable autocompletion
-Either make irony scale for large cdbs or fix rtags by learning how irony does it
+- TODO Reliable autocompletion in C++
+(Either make irony scale for large cdbs or fix rtags by learning how irony does it)
