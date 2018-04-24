@@ -332,3 +332,6 @@ Irony is super slow for compilation databases with huge number of files because 
   (when (file-exists-p rtags-file)
     (load rtags-file))
 #+END_SRC
+* Yet to figure out
+** TODO Reliable autocompletion
+Either make irony scale for large cdbs or fix rtags by learning how irony does it
