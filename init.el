@@ -43,4 +43,4 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (rainbow-delimiters projectile company-irony counsel swiper ivy company evil org-bullets yasnippet-snippets yasnippet spaceline solarized-theme ace-window thrift super-save which-key use-package))))
+    (keyfreq rainbow-delimiters projectile company-irony counsel swiper ivy company evil org-bullets yasnippet-snippets yasnippet spaceline solarized-theme ace-window thrift super-save which-key use-package))))
