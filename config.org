@@ -59,6 +59,16 @@
 
   ;; line wrapping around word boundaries
   (global-visual-line-mode 1)
+
+  ;; Auto revert buffers when they change on disk
+  (global-auto-revert-mode t)
+
+  ;; yes or no to y or n
+  (defalias 'yes-or-no-p 'y-or-n-p)
+
+  ;; diminish some common minor modes
+  (use-package emacs
+    :diminish (visual-line-mode eldoc-mode))
 #+END_SRC
 ** Keep windows balanced automatically
 #+BEGIN_SRC emacs-lisp
@@ -82,9 +92,15 @@
     (load-file (expand-file-name "init.el" user-emacs-directory)))
   (global-set-key (kbd "C-c r") 'config-reload)
 #+END_SRC
+** Diminish
+#+BEGIN_SRC emacs-lisp
+  (use-package diminish
+    :ensure t)
+#+END_SRC
 ** Which key :)
 #+BEGIN_SRC emacs-lisp
   (use-package which-key
+    :diminish which-key-mode
     :ensure t
     :config
     (which-key-mode))
@@ -94,6 +110,7 @@ Saves automatically when window loses focus
 #+BEGIN_SRC emacs-lisp
   (use-package super-save
     :ensure t
+    :diminish super-save-mode
     :config
     (super-save-mode +1))
 #+END_SRC
@@ -182,11 +199,16 @@ Log key frequency of commands to better assign shortcuts.
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet
     :ensure t
+    :diminish yas-minor-mode
     :config
       (use-package yasnippet-snippets
         :ensure t)
       (yas-reload-all)
       (yas-global-mode 1))
+
+  (use-package auto-yasnippet
+    :pin MELPA
+    :ensure t)
 #+END_SRC
 
 * Org
@@ -213,6 +235,10 @@ Log key frequency of commands to better assign shortcuts.
 #+END_SRC
 * Evil
 #+BEGIN_SRC emacs-lisp
+  (use-package undo-tree
+    :ensure t
+    :diminish undo-tree-mode)
+
   (use-package evil
     :ensure t
     :init
@@ -233,6 +259,8 @@ Log key frequency of commands to better assign shortcuts.
 #+BEGIN_SRC emacs-lisp
   (use-package company
     :ensure t
+    ;; diminish because it is enabled globally
+    :diminish company-mode
     :config
     (global-company-mode)
     (setq company-idle-delay 0)
@@ -245,6 +273,7 @@ Log key frequency of commands to better assign shortcuts.
   (use-package ivy
     :pin MELPA
     :ensure t
+    :diminish ivy-mode
     :config
     (ivy-mode 1)
     (setq ivy-use-virtual-buffers t)
