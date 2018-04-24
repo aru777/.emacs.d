@@ -73,13 +73,13 @@
 #+BEGIN_SRC emacs-lisp
   (defun config-visit ()
     (interactive)
-    (find-file "~/.emacs.d/init.el"))
+    (find-file (expand-file-name "config.org" user-emacs-directory)))
   (global-set-key (kbd "C-c e") 'config-visit)
 
   (defun config-reload ()
     "Reloads ~/.emacs.d/init.el at runtime"
     (interactive)
-    (load-file (expand-file-name "~/.emacs.d/init.el")))
+    (load-file (expand-file-name "init.el" user-emacs-directory)))
   (global-set-key (kbd "C-c r") 'config-reload)
 #+END_SRC
 ** Which key :)
