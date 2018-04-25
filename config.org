@@ -277,6 +277,7 @@ Log key frequency of commands to better assign shortcuts.
     :config
     (ivy-mode 1)
     (setq ivy-use-virtual-buffers t)
+    (setq ivy-wrap t)
     (setq enable-recursive-minibuffers t)
     (global-set-key (kbd "C-c C-r") 'ivy-resume))
 
@@ -326,6 +327,7 @@ Irony is super slow for compilation databases with huge number of files because 
     :bind ("s-p" . projectile-command-map)
     :config
     (setq projectile-completion-system 'ivy)
+    (setq ivy-count-format "(%d/%d) ")
     (projectile-global-mode +1))
 #+END_SRC
 * Local elisp files
@@ -342,5 +344,7 @@ Irony is super slow for compilation databases with huge number of files because 
     (load clangformat-file))
 #+END_SRC
 * Yet to figure out
+- Try cquery
+- Avy mode to move around
 - Reliable autocompletion in C++
   -- Either make irony scale for large cdbs or fix rtags by learning how irony does it
