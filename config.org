@@ -293,6 +293,9 @@ Log key frequency of commands to better assign shortcuts.
     :config
     (global-set-key (kbd "C-x C-f") 'counsel-find-file)
     (global-set-key (kbd "M-x") 'counsel-M-x))
+
+  (use-package smex
+    :ensure t)
 #+END_SRC
 * C++ settings
 ** Autocompletion with irony
@@ -332,6 +335,12 @@ Irony is super slow for compilation databases with huge number of files because 
   (when (file-exists-p rtags-file)
     (load rtags-file))
 #+END_SRC
+** Clang format
+#+BEGIN_SRC emacs-lisp
+  (setq clangformat-file (expand-file-name "clangformat.el" user-emacs-directory))
+  (when (file-exists-p clangformat-file)
+    (load clangformat-file))
+#+END_SRC
 * Yet to figure out
 - Reliable autocompletion in C++
- - Either make irony scale for large cdbs or fix rtags by learning how irony does it
+  -- Either make irony scale for large cdbs or fix rtags by learning how irony does it

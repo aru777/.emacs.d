@@ -11,10 +11,10 @@
         ("ORG"          . "https://orgmode.org/elpa/")
         ("MELPA"        . "https://melpa.org/packages/"))
       package-archive-priorities
-      '(("MELPA Stable" . 10)
+      '(("MELPA"        . 10)
         ("ORG"          . 7)
         ("GNU ELPA"     . 5)
-        ("MELPA"        . 0)))
+        ("MELPA Stable" . 0)))
 ;; keep the installed packages in .emacs.d
 (setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
 (package-initialize)
@@ -43,4 +43,4 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (evil-surround auto-yasnippet keyfreq rainbow-delimiters projectile company-irony counsel swiper ivy company evil org-bullets yasnippet-snippets yasnippet spaceline solarized-theme ace-window thrift super-save which-key use-package))))
+    (diminish smex evil-surround auto-yasnippet keyfreq rainbow-delimiters projectile company-irony counsel swiper ivy company evil org-bullets yasnippet-snippets yasnippet spaceline solarized-theme ace-window thrift super-save which-key use-package))))

@@ -11,3 +11,6 @@ bookmarks
 irony
 config.el
 rtags.el
+smex-items
+eshell/
+clangformat.el
