@@ -165,11 +165,17 @@ Log key frequency of commands to better assign shortcuts.
     (keyfreq-mode 1)
     (keyfreq-autosave-mode 1))
 #+END_SRC
+** Smooth scrolling
+#+BEGIN_SRC emacs-lisp
+  (use-package smooth-scrolling
+    :ensure t
+    :config
+    (smooth-scrolling-mode 1))
+#+END_SRC
 * Appearance
 ** Theme
 #+BEGIN_SRC emacs-lisp
   (use-package solarized-theme
-    :disabled
     :ensure t
     :config
     (load-theme 'solarized-light t))
