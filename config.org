@@ -262,7 +262,6 @@ Log key frequency of commands to better assign shortcuts.
                             org-gnus
                             org-id
                             org-info
-                            org-jsinfo
                             org-habit
                             org-inlinetask
                             org-irc
@@ -307,11 +306,21 @@ Log key frequency of commands to better assign shortcuts.
   (use-package evil-surround
     :pin MELPA
     :ensure t
-    :hook
-    (c++-mode . (lambda ()
-                  (push '(?* . ("/* " . " */")) evil-surround-pairs-alist)))
     :config
     (global-evil-surround-mode 1))
+
+  ;; evil's custom surrounds don't work for changes or deletions
+  ;; embrase does the trick here.
+  (use-package embrace
+    :ensure t)
+  (use-package evil-embrace
+    :ensure t
+    :after (embrace)
+    :hook
+    (c++-mode . (lambda ()
+                  (embrace-add-pair ?* "/* " " */")))
+    :config
+    (evil-embrace-enable-evil-surround-integration))
 #+END_SRC
 * Company for autocompletion
 #+BEGIN_SRC emacs-lisp
