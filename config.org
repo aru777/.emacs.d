@@ -181,6 +181,14 @@ Log key frequency of commands to better assign shortcuts.
     :config
     (smooth-scrolling-mode 1))
 #+END_SRC
+** Expand region
+#+BEGIN_SRC emacs-lisp
+  ;; One of the best features from Intellij Idea.
+  (use-package expand-region
+    :ensure t
+    :bind (("C-=" . 'er/expand-region)
+           ("C--" . 'er/contract-region)))
+#+END_SRC
 * Appearance
 ** Theme
 #+BEGIN_SRC emacs-lisp
