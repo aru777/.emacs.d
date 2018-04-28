@@ -253,6 +253,7 @@ Log key frequency of commands to better assign shortcuts.
                    "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t))))
     (setq org-habit-graph-column 50)
     (setq org-agenda-files '("~/dbx/org"))
+    (setq org-agenda-start-with-follow-mode t)
     (setq org-refile-targets (quote ((nil :maxlevel . 9)
                                      (org-agenda-files :maxlevel . 9))))
     (setq org-modules (quote (org-bbdb
