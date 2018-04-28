@@ -307,6 +307,9 @@ Log key frequency of commands to better assign shortcuts.
   (use-package evil-surround
     :pin MELPA
     :ensure t
+    :hook
+    (c++-mode . (lambda ()
+                  (push '(?* . ("/* " . " */")) evil-surround-pairs-alist)))
     :config
     (global-evil-surround-mode 1))
 #+END_SRC
