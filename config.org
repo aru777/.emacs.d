@@ -219,21 +219,6 @@ Log key frequency of commands to better assign shortcuts.
     :config
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 #+END_SRC
-** Dashboard
-#+BEGIN_SRC emacs-lisp
-  (use-package page-break-lines
-    :ensure t)
-
-  (use-package dashboard
-    :ensure t
-    :config
-    (dashboard-setup-startup-hook)
-    (if window-system
-        (progn
-          (setq dashboard-startup-banner 'official)
-          (setq dashboard-banner-logo-title "Aravind's emacs"))
-      (setq dashboard-startup-banner 1)))
-#+END_SRC
 * Yasnippet
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet
