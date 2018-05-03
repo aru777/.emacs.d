@@ -58,7 +58,8 @@
     (winner-mode 1))
 
   ;; line wrapping around word boundaries
-  (global-visual-line-mode 1)
+  ;; somehow this makes swiper slow
+  ;; (global-visual-line-mode 1)
 
   ;; Auto revert buffers when they change on disk
   (global-auto-revert-mode t)
