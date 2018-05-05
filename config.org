@@ -57,10 +57,6 @@
   (when (fboundp 'winner-mode)
     (winner-mode 1))
 
-  ;; line wrapping around word boundaries
-  ;; somehow this makes swiper slow
-  ;; (global-visual-line-mode 1)
-
   ;; Auto revert buffers when they change on disk
   (global-auto-revert-mode t)
 
@@ -151,8 +147,8 @@ Saves automatically when window loses focus
                (ibuffer-switch-to-saved-filter-groups "home")))
 #+END_SRC
 ** Moving between windows
-There is windmove, but getting it working with vim-like keybindings is painful.
-=ace-window= should do the trick for now.
+There is windmove, but getting it working with vim-like keybindings is
+painful.  =ace-window= should do the trick for now.
 #+BEGIN_SRC emacs-lisp
   (use-package ace-window
     :ensure t
@@ -164,15 +160,15 @@ There is windmove, but getting it working with vim-like keybindings is painful.
     (global-set-key (kbd "C-x o") 'ace-window)
     (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
     :custom-face
-    (aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 3.0)))))
+    (aw-leading-char-face
+     ((t (:inherit ace-jump-face-foreground :height 3.0)))))
 #+END_SRC
 ** Key frequency logging
 Log key frequency of commands to better assign shortcuts.
 #+BEGIN_SRC emacs-lisp
   (use-package keyfreq
     :ensure t
-    :config
-    (keyfreq-mode 1)
+    :config (keyfreq-mode 1)
     (keyfreq-autosave-mode 1))
 #+END_SRC
 ** Smooth scrolling
@@ -303,6 +299,7 @@ Log key frequency of commands to better assign shortcuts.
     :diminish undo-tree-mode)
 
   (use-package evil
+    :disabled
     :ensure t
     :init
     ;; This messes with org mode <TAB>
@@ -313,6 +310,7 @@ Log key frequency of commands to better assign shortcuts.
     (evil-mode 1))
 
   (use-package evil-surround
+    :disabled
     :pin MELPA
     :ensure t
     :config
@@ -321,8 +319,10 @@ Log key frequency of commands to better assign shortcuts.
   ;; evil's custom surrounds don't work for changes or deletions
   ;; embrase does the trick here.
   (use-package embrace
+    :disabled
     :ensure t)
   (use-package evil-embrace
+    :disabled
     :ensure t
     :after (embrace)
     :hook
@@ -330,6 +330,15 @@ Log key frequency of commands to better assign shortcuts.
                   (embrace-add-pair ?* "/* " " */")))
     :config
     (evil-embrace-enable-evil-surround-integration))
+#+END_SRC
+* Avy for movement
+#+BEGIN_SRC emacs-lisp
+  (use-package avy
+    :ensure t
+    :bind
+    (("C-:" . 'avy-goto-char)
+     ("C-;" . 'avy-goto-char-2)
+     ("M-g g" . 'avy-goto-line)))
 #+END_SRC
 * Company for autocompletion
 #+BEGIN_SRC emacs-lisp
@@ -376,7 +385,9 @@ Log key frequency of commands to better assign shortcuts.
 #+END_SRC
 * C++ settings
 ** Autocompletion with irony
-Irony is super slow for compilation databases with huge number of files because it reads the whole json and tries to find the relevant one
+Irony is super slow for compilation databases with huge number of
+files because it reads the whole json and tries to find the relevant
+one
 #+BEGIN_SRC emacs-lisp
   (use-package company-irony
     :disabled
