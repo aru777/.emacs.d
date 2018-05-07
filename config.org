@@ -299,7 +299,6 @@ Log key frequency of commands to better assign shortcuts.
     :diminish undo-tree-mode)
 
   (use-package evil
-    :disabled
     :ensure t
     :init
     ;; This messes with org mode <TAB>
@@ -310,7 +309,6 @@ Log key frequency of commands to better assign shortcuts.
     (evil-mode 1))
 
   (use-package evil-surround
-    :disabled
     :pin MELPA
     :ensure t
     :config
@@ -319,10 +317,8 @@ Log key frequency of commands to better assign shortcuts.
   ;; evil's custom surrounds don't work for changes or deletions
   ;; embrase does the trick here.
   (use-package embrace
-    :disabled
     :ensure t)
   (use-package evil-embrace
-    :disabled
     :ensure t
     :after (embrace)
     :hook
@@ -417,12 +413,62 @@ one
     (setq ivy-count-format "(%d/%d) ")
     (projectile-global-mode +1))
 #+END_SRC
+* Cquery
+#+BEGIN_SRC emacs-lisp
+  (use-package cquery
+    :if
+    (file-exists-p "/bin/cquery")
+    :bind
+    (:map c-mode-base-map
+      ("M-." . xref-find-definitions)
+      ("C-t h c" . cquery-call-hierarchy)
+      ("C-t h i" . cquery-inheritance-hierarchy)
+      ("C-t i" . lsp-ui-sideline-toggle-symbols-info)
+      ("C-t h m" . cquery-member-hierarchy)
+      ("C-t ." . lsp-ui-peek-find-definitions)
+      ("C-t ?" . lsp-ui-peek-find-references))
+    :preface
+    (defun cquery//enable ()
+      (condition-case nil
+        (lsp-cquery-enable)
+        (user-error nil)))
+    :init
+    (use-package lsp-mode
+      :config
+      (setq
+        lsp-ui-sideline-show-code-actions nil
+        lsp-ui-sideline-show-hover nil
+        ))
+    (use-package company-lsp
+      :config (add-to-list 'company-backends 'company-lsp))
+    (use-package lsp-ui
+      :init (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+    (use-package ivy-xref
+      :init
+      (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
+    (add-hook 'c-mode-common-hook #'cquery//enable)
+    :config
+    (setq
+      cquery-executable "/bin/cquery"
+      cquery-extra-args '("--log-file=/tmp/cq.log")
+      cquery-cache-dir "~/local/.cquery_cached_index"
+      cquery-extra-init-params '(:completion (:detailedLabel t))
+      cquery-sem-highlight-method 'font-lock
+      company-transformers nil
+      company-lsp-async t
+      company-lsp-cache-candidates nil
+      xref-prompt-for-identifier '(not
+                                    xref-find-definitions
+                                    xref-find-definitions-other-window
+                                    xref-find-definitions-other-frame
+                                    xref-find-references)))
+#+END_SRC
 * Local elisp files
 ** Rtags
 #+BEGIN_SRC emacs-lisp
-  (setq rtags-file (expand-file-name "rtags.el" user-emacs-directory))
-  (when (file-exists-p rtags-file)
-    (load rtags-file))
+  ;; (setq rtags-file (expand-file-name "rtags.el" user-emacs-directory))
+  ;; (when (file-exists-p rtags-file)
+  ;;   (load rtags-file))
 #+END_SRC
 ** Clang format
 #+BEGIN_SRC emacs-lisp
