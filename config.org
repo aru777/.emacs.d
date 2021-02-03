@@ -291,6 +291,16 @@ Log key frequency of commands to better assign shortcuts.
     :ensure t
     :config
       (add-hook 'org-mode-hook (lambda () (org-bullets-mode))))
+
+  (use-package org-journal
+    :ensure t
+    :init
+    (setq org-journal-dir "~/Dropbox/workTODOs")
+    (setq org-journal-date-format "#+TITLE: Journal Entry: %b %e %Y (%A)")
+    (setq org-journal-encrypt-journal t)
+    (setq org-journal-file-header "# -*- mode:org; epa-file-encrypt-to: (\"no@notreal.com\") -*-")
+    (add-hook 'org-journal-after-entry-create-hook 'normal-mode))
+
 #+END_SRC
 * Evil
 #+BEGIN_SRC emacs-lisp
